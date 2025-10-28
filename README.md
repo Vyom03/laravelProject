@@ -37,15 +37,25 @@ This repository documents the daily progress on building and learning Laravel, i
 - Replaced HTML tables with jQuery Datatables
 - Student Edit/Delete functionality removed
 - Admin role added and updated existing permissions for teacher role
+
 ---
+
 ## Login credentials for each role
 
-- Admin
- - Username: admin, Password: admin@12345
-- Teacher
- - Username: amit01, Password: temp@12345
-- Student
- - Username: vyomt, Password: temp@12345
+- Admin  
+  - Username: admin  
+  - Password: admin@12345
+
+- Teacher  
+  - Username: amit01  
+  - Password: temp@12345
+
+- Student  
+  - Username: vyomt  
+  - Password: temp@12345
+
+---
+
 ## Next Steps
 
 - Implement role-based data display and access restrictions
