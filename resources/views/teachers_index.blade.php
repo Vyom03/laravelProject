@@ -11,7 +11,7 @@
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-bordered mt-3">
+    <table id="teachersTable" class="display">
         <thead>
             <tr>
                 <th>ID</th>
@@ -39,9 +39,13 @@
         </tbody>
     </table>
 
-    <div class="d-flex justify-content-center mt-3">
-    {{ $teachers->links() }}
-    </div>
+    <script>
+        $(document).ready(function() {
+        $('#teachersTable').DataTable({
+            pageLength: 5
+        });
+        });
+    </script>
 
 </div>
 @endsection

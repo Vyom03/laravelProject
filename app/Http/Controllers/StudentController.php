@@ -18,7 +18,7 @@ class StudentController extends Controller
 
     public function index()
 {
-    $students = \App\Models\Student::simplePaginate(5);
+    $students = \App\Models\Student::all();
     return view('students_index', compact('students'));
 }
 

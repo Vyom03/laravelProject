@@ -15,7 +15,7 @@ class TeacherController extends Controller
 
     public function index() 
     {
-        $teachers = \App\Models\Teacher::simplePaginate(5); 
+        $teachers = \App\Models\Teacher::all(); 
         return view('teachers_index', compact('teachers'));
     }
 
