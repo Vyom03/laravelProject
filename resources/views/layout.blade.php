@@ -22,14 +22,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <!-- Add Dropdown for Teachers Only -->
-            @if(Session::get('role') === 'Teacher')
+            @if(Session::get('role') === 'Teacher' || Session::get('role') === 'Admin')
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="addDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Add
                     </a>
                     <div class="dropdown-menu" aria-labelledby="addDropdown">
                         <a class="dropdown-item" href="{{ route('students.add') }}">Add Student</a>
+                        @if(Session::get('role') === 'Admin')
                         <a class="dropdown-item" href="{{ route('teachers.add') }}">Add Teacher</a>
+                        @endif
                         <a class="dropdown-item" href="{{ route('students.upload') }}">Bulk Import Students</a>
                     </div>
                 </li>
@@ -42,14 +44,14 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="viewDropdown">
                         <a class="dropdown-item" href="{{ route('students.index') }}">View Students</a>
-                        @if(Session::get('role') === 'Teacher')
+                        @if(Session::get('role') === 'Teacher' || Session::get('role') === 'Admin')
                             <a class="dropdown-item" href="{{ route('teachers.index') }}">View Teachers</a>
                         @endif
                     </div>
                 </li>
             @endif
             <!-- Export as a standalone item (or dropdown) -->
-            @if(Session::get('role') === 'Teacher')
+            @if(Session::get('role') === 'Teacher' || Session::get('role') === 'Admin')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('export.page') }}">Export</a>
                 </li>
@@ -68,7 +70,7 @@
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
                 </li>
             @endif
-            @if(Session::get('role') === 'Teacher')
+            @if(Session::get('role') === 'Admin')
                 <form action="{{ route('logs.send') }}" method="POST" style="display:inline;">
                 @csrf
                 <button class="btn btn-warning">Send Logs (Last 24h)</button>

@@ -13,7 +13,9 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Username</th>
+                @if(Session::get('role') === 'Admin')
                 <th>Action</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -22,13 +24,17 @@
                 <td>{{ $teacher->id }}</td>
                 <td>{{ $teacher->name }}</td>
                 <td>{{ $teacher->username }}</td>
+                @if(Session::get('role') === 'Admin')
                 <td>
+                    
                     <a href="{{ route('teachers.edit', $teacher->id) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('teachers.delete', $teacher->id) }}" method="POST" style="display:inline;">
                     @csrf
                     <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this teacher?')">Delete</button>
                     </form>
+                    
                 </td>
+                @endif
 
             </tr>
             @endforeach

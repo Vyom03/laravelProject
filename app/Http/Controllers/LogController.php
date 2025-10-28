@@ -11,8 +11,8 @@ class LogController extends Controller
 {
     public function sendLogsEmail()
     {
-        // Only allow teachers!
-        if (session('role') !== 'Teacher') {
+        // Only allow Admin!
+        if (session('role') !== 'Admin') {
             abort(403);
         }
 

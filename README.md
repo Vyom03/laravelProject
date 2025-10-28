@@ -32,7 +32,11 @@ This repository documents the daily progress on building and learning Laravel, i
 - Added export to CSV feature for data backup/sharing
 - Built role-specific access control for project sections
 - Made initial commit to GitHub for version history and tracking changes
-
+- SMTP server setup virtually through turboSMTP
+- Sent email logs for daily login logouts of customer
+- Replaced HTML tables with jQuery Datatables
+- Student Edit/Delete functionality removed
+- Admin role added and updated existing permissions for teacher role
 ---
 
 ## Next Steps

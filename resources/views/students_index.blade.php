@@ -18,7 +18,7 @@
                 <th>Class</th>
                 <th>Age</th>
                 <th>
-                    @if(Session::get('role') === 'Teacher')
+                    @if(Session::get('role') === 'Teacher' || Session::get('role') === 'Admin')
                         Action
                     @endif
                 </th>
@@ -32,15 +32,17 @@
                 <td>{{ $student->username }}</td>
                 <td>{{ $student->class }}</td>
                 <td>{{ $student->age }}</td>
+                @if(Session::get('role') === 'Teacher' || Session::get('role') === 'Admin')
                 <td>
-                    @if(Session::get('role') === 'Teacher')
+                    
                         <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-warning">Edit</a>
                         <form action="{{ route('students.delete', $student->id) }}" method="POST" style="display:inline;">
                     @csrf
                         <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this student?')">Delete</button>
                         </form>
-                    @endif
+                    
                 </td>
+                @endif
 
             </tr>
             @endforeach

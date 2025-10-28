@@ -21,6 +21,19 @@ class AuthController extends Controller
         $username = $request->username;
         $password = $request->password;
 
+        $admin = \App\Models\Admin::where('username', $username)->first();
+        if ($admin && Hash::check($password, $admin->password)) {
+        Session::put('username', $admin->username);
+        Session::put('role', 'Admin');
+        // Log login activity
+        DB::table('activity_logs')->insert([
+            'username' => $admin->username,
+            'role' => 'Admin',
+            'action' => 'login',
+            'created_at' => now()
+        ]);
+        return redirect()->route('students.index'); // Or admin dashboard route
+    }
         // Check Student
         $student = Student::where('username', $username)->first();
         if($student && Hash::check($password, $student->password)){
