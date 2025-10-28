@@ -71,19 +71,24 @@ public function store(Request $request) {
     }
 
     // Search
-public function search(Request $request)
-{
-    $query = $request->input('query');
-    $students = \App\Models\Student::where('name', 'like', "%$query%")
-        ->orWhere('username', 'like', "%$query%")
-        ->orWhere('class', 'like', "%$query%")
-        ->paginate(5)
-        ->appends(['query' => $query]); // retain query param in pagination links
-    return view('students_index', compact('students'));
-}
+// public function search(Request $request)
+// {
+//     $query = $request->input('query');
+//     $students = \App\Models\Student::where('name', 'like', "%$query%")
+//         ->orWhere('username', 'like', "%$query%")
+//         ->orWhere('class', 'like', "%$query%")
+//         ->paginate(5)
+//         ->appends(['query' => $query]); // retain query param in pagination links
+//     return view('students_index', compact('students'));
+// }
 
 // Edit
 public function edit($id) {
+    
+    if (session('role') !== 'Teacher') {
+        abort(403, 'Unauthorized action.');
+    }
+    
     $student = \App\Models\Student::findOrFail($id);
     return view('student_edit', compact('student'));
 }
@@ -97,6 +102,11 @@ public function update(Request $request, $id) {
 
 // Delete
 public function destroy($id) {
+
+    if (session('role') !== 'Teacher') {
+        abort(403, 'Unauthorized action.');
+    }
+    
     $student = \App\Models\Student::findOrFail($id);
     $student->delete();
     return redirect()->route('students.index')->with('success', 'Student deleted successfully!');

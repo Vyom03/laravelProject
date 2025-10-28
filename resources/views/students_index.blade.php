@@ -4,10 +4,6 @@
 <div class="container mt-5">
     <h3>All Students</h3>
 
-    <form class="form-inline mb-3" method="GET" action="{{ route('students.search') }}">
-    <input class="form-control mr-2" type="search" name="query" placeholder="Search students..." required>
-    <button class="btn btn-outline-primary" type="submit">Search</button>
-</form>
 @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
@@ -21,7 +17,11 @@
                 <th>Username</th>
                 <th>Class</th>
                 <th>Age</th>
-                <th>Action</th>
+                <th>
+                    @if(Session::get('role') === 'Teacher')
+                        Action
+                    @endif
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -33,11 +33,13 @@
                 <td>{{ $student->class }}</td>
                 <td>{{ $student->age }}</td>
                 <td>
-                <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                <form action="{{ route('students.delete', $student->id) }}" method="POST" style="display:inline;">
-                @csrf
-                <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this student?')">Delete</button>
-                </form>
+                    @if(Session::get('role') === 'Teacher')
+                        <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <form action="{{ route('students.delete', $student->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                        <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this student?')">Delete</button>
+                        </form>
+                    @endif
                 </td>
 
             </tr>

@@ -22,7 +22,7 @@ Route::get('/students/add', [StudentController::class, 'showAddForm'])->name('st
 Route::post('/students/store', [StudentController::class, 'store'])->name('students.store');
 
 Route::get('/students', [StudentController::class, 'index'])->name('students.index');
-Route::get('/students/search', [StudentController::class, 'search'])->name('students.search');
+//Route::get('/students/search', [StudentController::class, 'search'])->name('students.search');
 Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
 Route::post('/students/{id}/update', [StudentController::class, 'update'])->name('students.update');
 Route::post('/students/{id}/delete', [StudentController::class, 'destroy'])->name('students.delete');
@@ -34,7 +34,7 @@ Route::get('/teachers/add', [TeacherController::class, 'showAddForm'])->name('te
 Route::post('/teachers/store', [TeacherController::class, 'store'])->name('teachers.store');
 
 Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
-Route::get('/teachers/search', [TeacherController::class, 'search'])->name('teachers.search');
+//Route::get('/teachers/search', [TeacherController::class, 'search'])->name('teachers.search');
 Route::get('/teachers/{id}/edit', [TeacherController::class, 'edit'])->name('teachers.edit');
 Route::post('/teachers/{id}/update', [TeacherController::class, 'update'])->name('teachers.update');
 Route::post('/teachers/{id}/delete', [TeacherController::class, 'destroy'])->name('teachers.delete');

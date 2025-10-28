@@ -3,10 +3,6 @@
 @section('content')
 <div class="container mt-5">
     <h3>All Teachers</h3>
-    <form class="form-inline mb-3" method="GET" action="{{ route('teachers.search') }}">
-    <input class="form-control mr-2" type="search" name="query" placeholder="Search teachers..." required>
-    <button class="btn btn-outline-primary" type="submit">Search</button>
-    </form>
     @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif

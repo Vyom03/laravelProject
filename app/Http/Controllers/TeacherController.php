@@ -40,15 +40,15 @@ class TeacherController extends Controller
     }
 
     // Search
-public function search(Request $request)
-{
-    $query = $request->input('query');
-    $teachers = \App\Models\Teacher::where('name', 'like', "%$query%")
-        ->orWhere('username', 'like', "%$query%")
-        ->paginate(5)
-        ->appends(['query' => $query]);
-    return view('teachers_index', compact('teachers'));
-}
+// public function search(Request $request)
+// {
+//     $query = $request->input('query');
+//     $teachers = \App\Models\Teacher::where('name', 'like', "%$query%")
+//         ->orWhere('username', 'like', "%$query%")
+//         ->paginate(5)
+//         ->appends(['query' => $query]);
+//     return view('teachers_index', compact('teachers'));
+// }
 
 // Edit
 public function edit($id) {
