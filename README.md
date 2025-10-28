@@ -53,15 +53,6 @@ This repository documents the daily progress on building and learning Laravel, i
 - Student  
   - Username: vyomt  
   - Password: temp@12345
-
----
-
-## Next Steps
-
-- Implement role-based data display and access restrictions
-- Refactor code for maintainability and scalability
-- Continue documenting learnings and best practices in this README
-
 ---
 
 ## About
