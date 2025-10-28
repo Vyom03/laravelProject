@@ -64,6 +64,13 @@
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
                 </li>
             @endif
+            @if(Session::get('role') === 'Teacher')
+                <form action="{{ route('logs.send') }}" method="POST" style="display:inline;">
+                @csrf
+                <button class="btn btn-warning">Send Logs (Last 24h)</button>
+                </form>
+            @endif
+
         </ul>
     </div>
 </nav>

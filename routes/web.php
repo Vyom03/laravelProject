@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\LogController;
 
 // Public routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -45,3 +46,6 @@ Route::get('/export', function () {
 Route::get('/export/students', [ExportController::class, 'exportStudents'])->name('export.students');
 Route::get('/export/teachers', [ExportController::class, 'exportTeachers'])->name('export.teachers');
 Route::get('/export/everyone', [ExportController::class, 'exportEveryone'])->name('export.everyone');
+
+Route::post('/logs/send', [LogController::class, 'sendLogsEmail'])->name('logs.send');
+

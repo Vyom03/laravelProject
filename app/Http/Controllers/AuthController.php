@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Student;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -25,6 +26,14 @@ class AuthController extends Controller
         if($student && Hash::check($password, $student->password)){
             Session::put('username', $student->username);
             Session::put('role', 'Student');
+            // After setting session on login
+            DB::table('activity_logs')->insert([
+                'username' => $student->username,
+                'role' => session('role'),
+                'action' => 'login',
+                'created_at' => now()
+            ]);
+
             return redirect()->route('students.index');
         }
 
@@ -33,6 +42,14 @@ class AuthController extends Controller
         if($teacher && Hash::check($password, $teacher->password)){
             Session::put('username', $teacher->username);
             Session::put('role', 'Teacher');
+            // After setting session on login
+            DB::table('activity_logs')->insert([
+                'username' => $teacher->username,
+                'role' => session('role'),
+                'action' => 'login',
+                'created_at' => now()
+            ]);
+
             return redirect()->route('teachers.index');
         }
 
@@ -41,7 +58,15 @@ class AuthController extends Controller
 
     public function logout()
     {
+        
+        DB::table('activity_logs')->insert([
+            'username' => session('username'),
+            'role' => session('role'),
+            'action' => 'logout',
+            'created_at' => now()
+        ]);
         Session::flush();
+
         return redirect()->route('login');
     }
 }
