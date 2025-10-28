@@ -37,7 +37,7 @@ This repository documents the daily progress on building and learning Laravel, i
 - Replaced HTML tables with jQuery Datatables
 - Student Edit/Delete functionality removed
 - Admin role added and updated existing permissions for teacher role
-
+- Added student grade management system
 ---
 
 ## Login credentials for each role

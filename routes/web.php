@@ -6,6 +6,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\GradeController;
 
 // Public routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -49,3 +50,18 @@ Route::get('/export/everyone', [ExportController::class, 'exportEveryone'])->nam
 
 Route::post('/logs/send', [LogController::class, 'sendLogsEmail'])->name('logs.send');
 
+// View all grades (Teacher/Admin)
+Route::get('/grades', [GradeController::class, 'index'])->name('grades.index');
+
+// View logged-in student's own grades
+Route::get('/grades/my', [GradeController::class, 'showMyGrades'])->name('grades.my');
+
+// Edit grades form for teacher/admin
+Route::get('/grades/{id}/edit', [GradeController::class, 'edit'])->name('grades.edit');
+
+// Update grades POST
+Route::post('/grades/{id}/update', [GradeController::class, 'update'])->name('grades.update');
+
+// Upload grades form (bulk import)
+Route::get('/grades/upload', [GradeController::class, 'showUploadForm'])->name('grades.upload.form');
+Route::post('/grades/upload', [GradeController::class, 'handleUpload'])->name('grades.upload');

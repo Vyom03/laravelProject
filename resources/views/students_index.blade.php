@@ -17,11 +17,13 @@
                 <th>Username</th>
                 <th>Class</th>
                 <th>Age</th>
+                @if(Session::get('role') === 'Teacher' || Session::get('role') === 'Admin')
                 <th>
-                    @if(Session::get('role') === 'Teacher' || Session::get('role') === 'Admin')
+                    
                         Action
-                    @endif
+                    
                 </th>
+                @endif
             </tr>
         </thead>
         <tbody>
